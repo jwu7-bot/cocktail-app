@@ -1,7 +1,7 @@
 body {
   font-family: "Montserrat", sans-serif;
-  background-color: #3c467b;
-  color: #f8f9fa;
+  background-color: #FFF8EF;
+  color: #36204C;
 }
 
 h1,
@@ -11,5 +11,5 @@ h4,
 h5,
 h6 {
   font-family: "Montserrat", sans-serif;
-  font-weight: 700;
+  font-weight: 500;
 }
