@@ -1,7 +1,7 @@
 body {
   font-family: "Montserrat", sans-serif;
-  background-color: #FFF8EF;
-  color: #39214E;
+  background-color: #fff8ef;
+  color: #39214e;
 }
 
 h1,
@@ -14,17 +14,42 @@ h6 {
 }
 
 .random-tile {
-  background-color: #FAA081;
+  background-color: #faa081;
 }
 
 .name-tile {
-  background-color: #A0DAC3;
+  background-color: #a0dac3;
 }
 
 .ingredient-tile {
-  background-color: #FFE283;
+  background-color: #ffe283;
 }
 
 .categories-tile {
-  background-color: #A6DDE9;
+  background-color: #a6dde9;
+}
+
+.card.h-100 {
+  aspect-ratio: 1 / 1; /* square cards */
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical center */
+  align-items: center;     /* horizontal center */
+  height: 100%;
+}
+
+.card-body svg {
+  width: 64px;  /* medium size */
+  height: 64px;
+  margin-bottom: 10px;
+  display: block; /* ensures no extra space around SVG */
+}
+
+.card:hover {
+  transform: scale(1.05);
 }
