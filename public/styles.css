@@ -1,7 +1,7 @@
 body {
   font-family: "Montserrat", sans-serif;
   background-color: #FFF8EF;
-  color: #36204C;
+  color: #39214E;
 }
 
 h1,
@@ -11,5 +11,20 @@ h4,
 h5,
 h6 {
   font-family: "Montserrat", sans-serif;
-  font-weight: 500;
+}
+
+.random-tile {
+  background-color: #FAA081;
+}
+
+.name-tile {
+  background-color: #A0DAC3;
+}
+
+.ingredient-tile {
+  background-color: #FFE283;
+}
+
+.categories-tile {
+  background-color: #A6DDE9;
 }

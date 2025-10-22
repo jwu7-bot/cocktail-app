@@ -4,16 +4,68 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cocktail App</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="text-center p-5">
     <div class="container">
-      <h1 class="mb-4">Home Page</h1>
+      <!-- TITLE -->
+      <h1 class="mb-4">Cocktail App</h1>
+
+      <!-- TILES -->
+      <div class="row g-3">
+        <!-- Random Cocktail Tile -->
+        <div class="col-6">
+          <div
+            class="random-tile card h-100 d-flex justify-content-center align-items-center"
+            role="button"
+            onclick="alert('Random Cocktail')"
+          >
+            <div class="card-body">Random Cocktail</div>
+          </div>
+        </div>
+
+        <!-- Search By Name Tile -->
+        <div class="col-6">
+          <div
+            class="name-tile card h-100 d-flex justify-content-center align-items-center"
+            role="button"
+            onclick="alert('Search by Name')"
+          >
+            <div class="card-body">Search by Name</div>
+          </div>
+        </div>
+
+        <!-- Search by Ingredients Tile -->
+        <div class="col-6">
+          <div
+            class="ingredient-tile card h-100 d-flex justify-content-center align-items-center"
+            role="button"
+            onclick="alert('Search by Ingredient')"
+          >
+            <div class="card-body">Search by Ingredient</div>
+          </div>
+        </div>
+
+        <!-- Browse Categories Tile -->
+        <div class="col-6">
+          <div
+            class="categories-tile card h-100 d-flex justify-content-center align-items-center"
+            role="button"
+            onclick="alert('Browse Categories')"
+          >
+            <div class="card-body">Browse Categories</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </body>
 </html>
