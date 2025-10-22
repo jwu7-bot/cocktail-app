@@ -1,6 +1,7 @@
 /*
- *
- *
+ * Cocktail-App
+ * Author: Jiahui Wu
+ * Date: 2025-10-22
  */
 
 import axios from "axios";
