@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Home route
 app.get("/", (req, res) => {
-    res.render("home");
+    res.render("index");
 });
 
 app.listen(port, () => {
