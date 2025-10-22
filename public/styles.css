@@ -30,7 +30,7 @@ h6 {
 }
 
 .card.h-100 {
-  aspect-ratio: 1 / 1; /* square cards */
+  aspect-ratio: 1 / 1; 
   cursor: pointer;
   transition: transform 0.2s;
 }
@@ -38,16 +38,16 @@ h6 {
 .card-body {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* vertical center */
-  align-items: center;     /* horizontal center */
+  justify-content: center;
+  align-items: center;   
   height: 100%;
 }
 
 .card-body svg {
-  width: 64px;  /* medium size */
+  width: 64px;  
   height: 64px;
   margin-bottom: 10px;
-  display: block; /* ensures no extra space around SVG */
+  display: block; 
 }
 
 .card:hover {
