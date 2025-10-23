@@ -12,8 +12,10 @@
   </head>
   <body class="text-center p-5">
     <div class="container py-5 text-center">
+      <!-- Cocktail Name -->
       <h1 class="mb-4"><%= drink.strDrink %></h1>
 
+      <!-- Cocktail image -->
       <img
         src="<%= drink.strDrinkThumb %>/small"
         alt="Cocktail Image"
@@ -21,6 +23,7 @@
         style="max-width: 400px"
       />
 
+      <!-- Cocktail ingredients -->
       <h3 class="mb-3">🍹 Ingredients</h3>
       <ul class="list-group mb-4 mx-auto" style="max-width: 400px">
         <% ingredients.forEach(ing => { %>
@@ -28,6 +31,7 @@
         <% }) %>
       </ul>
 
+      <!-- Cocktail instructions -->
       <h3 class="mb-3">🧾 Instructions</h3>
       <p class="lead mx-auto" style="max-width: 600px">
         <%= drink.strInstructions %>
