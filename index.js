@@ -22,10 +22,12 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+// Random Cocktail route
 app.get("/random", async (req, res) => {
   try {
     const response = await axios.get(API_URL + "/random.php");
-    const drink = result.data.drinks[0];
+
+    const drink = response.data.drinks[0];
 
     // Collect ingredients dynamically
     const ingredients = [];
@@ -37,8 +39,17 @@ app.get("/random", async (req, res) => {
 
     res.render("cocktail", { drink, ingredients });
   } catch (error) {
-    console.error(error);
-    res.send("Error fetching cocktail data 😅");
+    console.error("Error fetching cocktail data:", error.message);
+
+    // Send empty drink and empty ingredients so EJS still renders
+    const drink = {
+      strDrink: "No cocktail available",
+      strDrinkThumb: "",
+      strInstructions: "Sorry, we couldn't fetch the recipe at the moment.",
+    };
+    const ingredients = [];
+
+    res.render("cocktail", { drink, ingredients });
   }
 });
 

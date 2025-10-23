@@ -10,9 +10,31 @@
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
-    <div class="container">
-        
+  <body class="text-center p-5">
+    <div class="container py-5 text-center">
+      <h1 class="mb-4"><%= drink.strDrink %></h1>
+
+      <img
+        src="<%= drink.strDrinkThumb %>/small"
+        alt="Cocktail Image"
+        class="img-fluid rounded shadow mb-4"
+        style="max-width: 400px"
+      />
+
+      <h3 class="mb-3">🍹 Ingredients</h3>
+      <ul class="list-group mb-4 mx-auto" style="max-width: 400px">
+        <% ingredients.forEach(ing => { %>
+        <li class="list-group-item"><%= ing %></li>
+        <% }) %>
+      </ul>
+
+      <h3 class="mb-3">🧾 Instructions</h3>
+      <p class="lead mx-auto" style="max-width: 600px">
+        <%= drink.strInstructions %>
+      </p>
+
+      <a href="/" class="btn btn-secondary mt-4">Back to Home</a>
+      <a href="/random" class="btn btn-primary mt-4">Random Cocktail</a>
     </div>
   </body>
 </html>
