@@ -53,6 +53,11 @@ app.get("/random", async (req, res) => {
   }
 });
 
+// Search by Name route
+app.get("/search-name", async (req, res) => {
+  res.render("search-name");
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
