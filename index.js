@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-// Random Cocktail route
+// Random Cocktail route 
 app.get("/random", async (req, res) => {
   try {
     const response = await axios.get(API_URL + "/random.php");
@@ -57,6 +57,8 @@ app.get("/random", async (req, res) => {
 app.get("/search-name", async (req, res) => {
   res.render("search-name");
 });
+
+// Handle Search by Name
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
