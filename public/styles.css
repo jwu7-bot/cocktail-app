@@ -1,5 +1,5 @@
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #fff8ef;
   color: #39214e;
 }
@@ -21,7 +21,7 @@ body {
 }
 
 .card.h-100 {
-  aspect-ratio: 1 / 1; 
+  aspect-ratio: 1 / 1;
   cursor: pointer;
   transition: transform 0.2s;
 }
@@ -30,17 +30,30 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;   
+  align-items: center;
   height: 100%;
 }
 
 .card-body svg {
-  width: 64px;  
+  width: 64px;
   height: 64px;
   margin-bottom: 10px;
-  display: block; 
+  display: block;
 }
 
 .card:hover {
   transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover; /* makes all images same height */
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+.card {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border: none;
+  transition: transform 0.2s ease-in-out;
 }

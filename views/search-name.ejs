@@ -31,10 +31,10 @@
 
       <!-- Results Section -->
       <% if (drinks.length > 0) { %>
-      <div class="row g-4">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
         <% drinks.forEach(drink => { %>
-        <div class="col-6 col-md-4">
-          <div class="card h-100">
+        <div class="col">
+          <div class="card h-200">
             <img
               src="<%= drink.strDrinkThumb %>"
               class="card-img-top"
@@ -42,13 +42,12 @@
             />
             <div class="card-body">
               <h5 class="card-title"><%= drink.strDrink %></h5>
-              <p class="card-text text-muted"><%= drink.strCategory %></p>
+              <p class="card-text text-muted"><%= drink.strCategory || '' %></p>
               <a
                 href="/cocktail/<%= drink.idDrink %>"
                 class="btn btn-outline-secondary btn-sm"
+                >View Recipe</a
               >
-                View Recipe
-              </a>
             </div>
           </div>
         </div>
