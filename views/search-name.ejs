@@ -56,6 +56,34 @@
       <% } else if (searchTerm) { %>
       <p class="text-muted">No cocktails found for "<%= searchTerm %>".</p>
       <% } %>
+
+      <!-- Pagination -->
+      <% if (totalPages > 1) { %>
+      <nav aria-label="Page navigation" class="mt-4">
+        <ul class="pagination justify-content-center">
+          <!-- Previous -->
+          <li class="page-item <%= page <= 1 ? 'disabled' : '' %>">
+            <form method="POST" action="/search-name?page=<%= page - 1 %>">
+              <input type="hidden" name="name" value="<%= searchTerm %>" />
+              <button class="page-link" type="submit">Previous</button>
+            </form>
+          </li>
+
+          <!-- Current -->
+          <li class="page-item disabled">
+            <span class="page-link">Page <%= page %> of <%= totalPages %></span>
+          </li>
+
+          <!-- Next -->
+          <li class="page-item <%= page >= totalPages ? 'disabled' : '' %>">
+            <form method="POST" action="/search-name?page=<%= page + 1 %>">
+              <input type="hidden" name="name" value="<%= searchTerm %>" />
+              <button class="page-link" type="submit">Next</button>
+            </form>
+          </li>
+        </ul>
+      </nav>
+      <% } %>
     </div>
   </body>
 </html>

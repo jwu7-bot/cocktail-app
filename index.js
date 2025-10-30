@@ -15,6 +15,8 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const PAGE_SIZE = 9; // 3x3 grid
+
 const API_URL = "https://www.thecocktaildb.com/api/json/v1/1";
 
 // GET route - home route
@@ -86,41 +88,64 @@ app.get("/cocktail/:id", async (req, res) => {
 
 // GET route - show empty search form
 app.get("/search-name", async (req, res) => {
-  res.render("search-name", { drinks: [], searchTerm: "" });
+  res.render("search-name", { drinks: [], searchTerm: "", totalPages: 0});
 });
 
 // POST route - handle cocktail name search
 app.post("/search-name", async (req, res) => {
   const searchTerm = req.body.name;
+  const page = parseInt(req.query.page) || 1;
 
   try {
     const response = await axios.get(`${API_URL}/search.php?s=${searchTerm}`);
     const drinks = Array.isArray(response.data.drinks) ? response.data.drinks : [];
 
-    res.render("search-name", { drinks, searchTerm });
+    const totalResults = drinks.length;
+    const totalPages = Math.ceil(totalResults / PAGE_SIZE);
+    const startIndex = (page - 1) * PAGE_SIZE;
+    const paginatedDrinks = drinks.slice(startIndex, startIndex + PAGE_SIZE);
+
+    res.render("search-name", {
+      drinks: paginatedDrinks,
+      searchTerm,
+      page,
+      totalPages,
+    });
   } catch (error) {
     console.error("Error searching by name:", error.message);
-    res.render("search-name", { drinks: [], searchTerm });
+    res.render("search-name", { drinks: [], searchTerm, page: 1, totalPages: 1 });
   }
 });
 
 // GET route - show empty search form
 app.get("/search-ingredient", (req, res) => {
-  res.render("search-ingredient", { drinks: [], searchTerm: "" });
+  res.render("search-ingredient", { drinks: [], searchTerm: "", totalPages: 0 });
 });
 
 // POST route - handle ingredient search
 app.post("/search-ingredient", async (req, res) => {
   const searchTerm = req.body.ingredient;
+  const page = parseInt(req.query.page) || 1;
 
   try {
     const response = await axios.get(`${API_URL}/filter.php?i=${searchTerm}`);
     const drinks = Array.isArray(response.data.drinks) ? response.data.drinks : [];
 
-    res.render("search-ingredient", { drinks, searchTerm });
+    // Calculate pagination
+    const totalResults = drinks.length;
+    const totalPages = Math.ceil(totalResults / PAGE_SIZE);
+    const startIndex = (page - 1) * PAGE_SIZE;
+    const paginatedDrinks = drinks.slice(startIndex, startIndex + PAGE_SIZE);
+
+    res.render("search-ingredient", {
+      drinks: paginatedDrinks,
+      searchTerm,
+      page,
+      totalPages,
+    });
   } catch (error) {
     console.error("Error searching by ingredient:", error.message);
-    res.render("search-ingredient", { drinks: [], searchTerm });
+    res.render("search-ingredient", { drinks: [], searchTerm, page: 1, totalPages: 1 });
   }
 });
 
