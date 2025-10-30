@@ -59,6 +59,17 @@ app.get("/search-name", async (req, res) => {
 });
 
 // Handle Search by Name
+app.get("/results-name", async (req, res) => {
+  const query = req.query.q;
+  try {
+    const response = await axios.get(`${API_URL}/search.php?s=${query}`);
+    const drinks = response.data.drinks || [];
+    res.render("results", { title: `Results for "${query}"`, drinks });
+  } catch (error) {
+    console.error("Error searching by name:", error.message);
+    res.render("results", { title: "Error", drinks: [] });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
