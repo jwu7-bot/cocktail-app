@@ -55,19 +55,19 @@ app.get("/random", async (req, res) => {
 
 // Search by Name route
 app.get("/search-name", async (req, res) => {
-  res.render("search-name");
+  res.render("search-name", { drinks: [], searchTerm: "" });
 });
 
 // Handle Search by Name
-app.get("/results-name", async (req, res) => {
-  const query = req.query.q;
+app.post("/search-name", async (req, res) => {
+  const query = req.query.name;
   try {
     const response = await axios.get(`${API_URL}/search.php?s=${query}`);
     const drinks = response.data.drinks || [];
-    res.render("results", { title: `Results for "${query}"`, drinks });
+    res.render("search-name", { drinks, searchTerm });
   } catch (error) {
     console.error("Error searching by name:", error.message);
-    res.render("results", { title: "Error", drinks: [] });
+    res.render("search-name", { drinks: [], searchTerm });
   }
 });
 
