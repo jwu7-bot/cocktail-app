@@ -37,7 +37,7 @@ app.get("/random", async (req, res) => {
       if (ingredient) ingredients.push(`${measure || ""} ${ingredient}`);
     }
 
-    res.render("cocktail", { drink, ingredients });
+    res.render("random", { drink, ingredients });
   } catch (error) {
     console.error("Error fetching cocktail data:", error.message);
 
@@ -49,7 +49,7 @@ app.get("/random", async (req, res) => {
     };
     const ingredients = [];
 
-    res.render("cocktail", { drink, ingredients });
+    res.render("random", { drink, ingredients });
   }
 });
 
