@@ -95,7 +95,7 @@ app.post("/search-name", async (req, res) => {
 
   try {
     const response = await axios.get(`${API_URL}/search.php?s=${searchTerm}`);
-    const drinks = response.data.drinks || [];
+    const drinks = Array.isArray(response.data.drinks) ? response.data.drinks : [];
 
     res.render("search-name", { drinks, searchTerm });
   } catch (error) {
@@ -115,7 +115,7 @@ app.post("/search-ingredient", async (req, res) => {
 
   try {
     const response = await axios.get(`${API_URL}/filter.php?i=${searchTerm}`);
-    const drinks = response.data.drinks || [];
+    const drinks = Array.isArray(response.data.drinks) ? response.data.drinks : [];
 
     res.render("search-ingredient", { drinks, searchTerm });
   } catch (error) {
