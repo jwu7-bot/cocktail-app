@@ -53,6 +53,37 @@ app.get("/random", async (req, res) => {
   }
 });
 
+// View cocktail by ID
+app.get("/cocktail/:id", async (req, res) => {
+  const cocktailId = req.params.id;
+
+  try {
+    const response = await axios.get(`${API_URL}/lookup.php?i=${cocktailId}`);
+    const drink = response.data.drinks[0];
+
+     // Collect ingredients dynamically
+    const ingredients = Array.from({ length: 15 }, (_, i) => {
+      const ingredient = drink[`strIngredient${i + 1}`];
+      const measure = drink[`strMeasure${i + 1}`];
+      return ingredient ? `${(measure || "").trim()} ${ingredient}`.trim() : null;
+    }).filter(Boolean);
+
+    res.render("cocktail-details", { drink, ingredients });
+  } catch (error) {
+    console.error("Error fetching cocktail data:", error.message);
+
+    // Send empty drink and empty ingredients so EJS still renders
+    const drink = {
+      strDrink: "No cocktail available",
+      strDrinkThumb: "",
+      strInstructions: "Sorry, we couldn't fetch the recipe at the moment.",
+    };
+    const ingredients = [];
+
+    res.render("random", { drink, ingredients });
+  }
+});
+
 // Search by Name route
 app.get("/search-name", async (req, res) => {
   res.render("search-name", { drinks: [], searchTerm: "" });
