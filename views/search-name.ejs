@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Search by Name</title>
+    <title>Search by Name - Cocktail App</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -12,7 +12,51 @@
   </head>
   <body class="text-center p-5">
     <div class="container">
-        <h1 class="mb-2">Search By Name</h1>
+      <h1 class="mb-2">Search By Name</h1>
+
+      <!-- Search Form -->
+      <form action="/search-name" method="POST" class="mb-5">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            name="name"
+            class="form-control"
+            placeholder="Enter cocktail name..."
+            value="<%= searchTerm %>"
+            required
+          />
+          <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+      </form>
+
+      <!-- Results Section -->>
+      <% if (drinks.length > 0) { %>
+      <div class="row g-4">
+        <% drinks.forEach(drink => { %>
+        <div class="col-6 col-md-4">
+          <div class="card h-100">
+            <img
+              src="<%= drink.strDrinkThumb %>"
+              class="card-img-top"
+              alt="<%= drink.strDrink %>"
+            />
+            <div class="card-body">
+              <h5 class="card-title"><%= drink.strDrink %></h5>
+              <p class="card-text text-muted"><%= drink.strCategory %></p>
+              <a
+                href="/cocktail/<%= drink.idDrink %>"
+                class="btn btn-outline-secondary btn-sm"
+              >
+                View Recipe
+              </a>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+      <% } else if (searchTerm) { %>
+      <p class="text-muted">No cocktails found for "<%= searchTerm %>".</p>
+      <% } %>
     </div>
   </body>
 </html>

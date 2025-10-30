@@ -60,9 +60,9 @@ app.get("/search-name", async (req, res) => {
 
 // Handle Search by Name
 app.post("/search-name", async (req, res) => {
-  const query = req.query.name;
+  const searchTerm = req.body.name;
   try {
-    const response = await axios.get(`${API_URL}/search.php?s=${query}`);
+    const response = await axios.get(`${API_URL}/search.php?s=${searchTerm}`);
     const drinks = response.data.drinks || [];
     res.render("search-name", { drinks, searchTerm });
   } catch (error) {
