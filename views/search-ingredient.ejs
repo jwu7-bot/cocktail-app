@@ -19,7 +19,7 @@
         <div class="input-group mb-3">
           <input
             type="text"
-            name="name"
+            name="ingredient"
             class="form-control"
             placeholder="Enter an ingredient ..."
             value="<%= searchTerm %>"
@@ -30,7 +30,32 @@
         </div>
       </form>
 
-     
+      <!-- Results Section -->
+      <% if (drinks.length > 0) { %>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <% drinks.forEach(drink => { %>
+        <div class="col">
+          <div class="card h-200">
+            <img
+              src="<%= drink.strDrinkThumb %>"
+              class="card-img-top"
+              alt="<%= drink.strDrink %>"
+            />
+            <div class="card-body">
+              <h5 class="card-title"><%= drink.strDrink %></h5>
+              <a
+                href="/cocktail/<%= drink.idDrink %>"
+                class="btn btn-outline-secondary btn-sm"
+                >View Recipe</a
+              >
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+      <% } else if (searchTerm) { %>
+      <p class="text-muted">No cocktails found for "<%= searchTerm %>".</p>
+      <% } %>
     </div>
   </body>
 </html>
