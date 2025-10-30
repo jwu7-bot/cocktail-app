@@ -17,12 +17,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const API_URL = "https://www.thecocktaildb.com/api/json/v1/1";
 
-// Home route
+// GET route - home route
 app.get("/", (req, res) => {
   res.render("index");
 });
 
-// Random Cocktail route 
+// GET route - show random cocktail
 app.get("/random", async (req, res) => {
   try {
     const response = await axios.get(API_URL + "/random.php");
@@ -53,7 +53,7 @@ app.get("/random", async (req, res) => {
   }
 });
 
-// View cocktail by ID
+// GET route - show cocktail by ID
 app.get("/cocktail/:id", async (req, res) => {
   const cocktailId = req.params.id;
 
@@ -84,21 +84,43 @@ app.get("/cocktail/:id", async (req, res) => {
   }
 });
 
-// Search by Name route
+// GET route - show empty search form
 app.get("/search-name", async (req, res) => {
   res.render("search-name", { drinks: [], searchTerm: "" });
 });
 
-// Handle Search by Name
+// POST route - handle cocktail name search
 app.post("/search-name", async (req, res) => {
   const searchTerm = req.body.name;
+
   try {
     const response = await axios.get(`${API_URL}/search.php?s=${searchTerm}`);
     const drinks = response.data.drinks || [];
+
     res.render("search-name", { drinks, searchTerm });
   } catch (error) {
     console.error("Error searching by name:", error.message);
     res.render("search-name", { drinks: [], searchTerm });
+  }
+});
+
+// GET route - show empty search form
+app.get("/search-ingredient", (req, res) => {
+  res.render("search-ingredient", { drinks: [], searchTerm: "" });
+});
+
+// POST route - handle ingredient search
+app.post("/search-ingredient", async (req, res) => {
+  const searchTerm = req.body.ingredient;
+
+  try {
+    const response = await axios.get(`${API_URL}/filter.php?i=${searchTerm}`);
+    const drinks = response.data.drinks || [];
+
+    res.render("search-ingredient", { drinks, searchTerm });
+  } catch (error) {
+    console.error("Error searching by ingredient:", error.message);
+    res.render("search-ingredient", { drinks: [], searchTerm });
   }
 });
 
