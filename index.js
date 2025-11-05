@@ -18,12 +18,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const PAGE_SIZE = 9; // 3x3 grid
 const API_URL = "https://www.thecocktaildb.com/api/json/v1/1";
 
-// GET route - home route
+/* =========================
+   Homepage (GET)
+========================= */
 app.get("/", (req, res) => {
   res.render("index");
 });
 
-// GET route - show random cocktail
+/* =========================
+   Random cocktail (GET)
+========================= */
 app.get("/random", async (req, res) => {
   try {
     const response = await axios.get(`${API_URL}/random.php`);
@@ -49,7 +53,9 @@ app.get("/random", async (req, res) => {
   }
 });
 
-// GET route - show cocktail by ID
+/* =========================
+   Show cocktail by ID (GET)
+========================= */
 app.get("/cocktail/:id", async (req, res) => {
   const cocktailId = req.params.id;
 
