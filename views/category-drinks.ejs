@@ -14,6 +14,7 @@
     <div class="container">
       <h1 class="mb-4"><%= categoryName %> Cocktails</h1>
 
+      <!-- Category drinks -->
       <% if (drinks.length > 0) { %>
       <div class="row row-cols-1 row-cols-md-3 g-4">
         <% drinks.forEach(drink => { %>
@@ -72,6 +73,7 @@
       <p class="text-muted">No cocktails found in this category.</p>
       <% } %>
 
+      <!-- Links -->
       <a href="/categories" class="btn btn-secondary mt-4"
         >Back to Categories</a
       >

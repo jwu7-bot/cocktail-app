@@ -1,7 +1,7 @@
 /*
  * Cocktail-App
  * Author: Jiahui Wu
- * Date: 2025-10-22
+ * Date: 2025-11-06
  */
 
 import axios from "axios";
@@ -169,7 +169,6 @@ app.get("/category/:name", async (req, res) => {
       ? response.data.drinks
       : [];
 
-    // Pagination
     const PAGE_SIZE = 9;
     const totalResults = drinks.length;
     const totalPages = Math.ceil(totalResults / PAGE_SIZE);
