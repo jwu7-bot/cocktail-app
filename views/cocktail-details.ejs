@@ -27,7 +27,7 @@
       <h3 class="mb-3">🍹 Ingredients</h3>
       <ul class="list-group mb-4 mx-auto" style="max-width: 400px">
         <% ingredients.forEach(ing => { %>
-          <li class="list-group-item"><%= ing %></li>
+        <li class="list-group-item"><%= ing %></li>
         <% }) %>
       </ul>
 
@@ -40,7 +40,12 @@
       <!-- Links -->
       <a href="/" class="btn btn-secondary mt-4">Back to Home</a>
       <a href="/search-name" class="btn btn-primary mt-4">Search name</a>
-      <a href="/search-ingredient" class="btn btn-primary mt-4">Search ingredient</a>
+      <a href="/search-ingredient" class="btn btn-primary mt-4"
+        >Search ingredient</a
+      >
+
+      <!-- Footer -->
+      <%- include('partials/footer') %>
     </div>
   </body>
 </html>
