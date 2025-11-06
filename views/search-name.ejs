@@ -59,7 +59,7 @@
 
       <!-- Pagination -->
       <nav class="mt-4">
-        <ul class="pagination justify-content-center">
+        <ul class="pagination justify-content-center flex-wrap">
           <% if (page > 1) { %>
           <li class="page-item">
             <a
@@ -68,9 +68,7 @@
               >Previous</a
             >
           </li>
-          <% } %>
-
-          <% for (let i = 1; i <= totalPages; i++) { %>
+          <% } %> <% for (let i = 1; i <= totalPages; i++) { %>
           <li class="page-item <%= i === page ? 'active' : '' %>">
             <a
               class="page-link"
@@ -78,9 +76,7 @@
               ><%= i %></a
             >
           </li>
-          <% } %>
-
-          <% if (page < totalPages) { %>
+          <% } %> <% if (page < totalPages) { %>
           <li class="page-item">
             <a
               class="page-link"
@@ -94,6 +90,9 @@
       <% } else if (searchTerm) { %>
       <p class="text-muted">No cocktails found for "<%= searchTerm %>".</p>
       <% } %>
+
+      <!-- Footer -->
+      <%- include('partials/footer') %>
     </div>
   </body>
 </html>

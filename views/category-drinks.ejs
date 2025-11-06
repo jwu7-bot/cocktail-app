@@ -12,7 +12,7 @@
   </head>
   <body class="text-center p-5">
     <div class="container">
-      <h1 class="mb-4"><%= categoryName %> Cocktails</h1>
+      <h1 class="mb-4"><%= categoryName %></h1>
 
       <!-- Category drinks -->
       <% if (drinks.length > 0) { %>
@@ -41,7 +41,7 @@
       <!-- Pagination -->
       <% if (totalPages > 1) { %>
       <nav class="mt-4">
-        <ul class="pagination justify-content-center">
+        <ul class="pagination justify-content-center flex-wrap">
           <% if (page > 1) { %>
           <li class="page-item">
             <a
@@ -78,6 +78,9 @@
         >Back to Categories</a
       >
       <a href="/" class="btn btn-primary mt-4">Home</a>
+
+      <!-- Footer -->
+      <%- include('partials/footer') %>
     </div>
   </body>
 </html>
