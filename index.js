@@ -138,6 +138,17 @@ app.get("/search-ingredient", async (req, res) => {
   res.render("search-ingredient", { drinks, searchTerm, page, totalPages });
 });
 
+app.get("/categories", async (req, res) => {
+  try {
+    const response = await axios.get(`${API_URL}/list.php?c=list`);
+    const categories = response.data.drinks.map(d => d.strCategory);
+    res.render("categories", { categories });
+  } catch (error) {
+    console.error("Error fetching categories:", error.message);
+    res.render("categories", { categories: [] });
+  }
+});
+
 /* =========================
    Start server
 ========================= */
