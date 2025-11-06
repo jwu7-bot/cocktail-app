@@ -31,8 +31,6 @@ A fun and interactive **Cocktail App** built with **Node.js, Express, and EJS**,
    ```bash
    git clone https://github.com/YOUR_USERNAME/cocktail-app.git
    cd cocktail-app
-
-   Install dependencies:
    ```
 
 2. **Install dependencies:**
