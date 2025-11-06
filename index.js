@@ -66,7 +66,9 @@ app.get("/cocktail/:id", async (req, res) => {
     const ingredients = Array.from({ length: 15 }, (_, i) => {
       const ingredient = drink[`strIngredient${i + 1}`];
       const measure = drink[`strMeasure${i + 1}`];
-      return ingredient ? `${(measure || "").trim()} ${ingredient}`.trim() : null;
+      return ingredient
+        ? `${(measure || "").trim()} ${ingredient}`.trim()
+        : null;
     }).filter(Boolean);
 
     res.render("cocktail-details", { drink, ingredients });
@@ -138,14 +140,56 @@ app.get("/search-ingredient", async (req, res) => {
   res.render("search-ingredient", { drinks, searchTerm, page, totalPages });
 });
 
+/* =========================
+   List Categories (GET)
+========================= */
 app.get("/categories", async (req, res) => {
   try {
     const response = await axios.get(`${API_URL}/list.php?c=list`);
-    const categories = response.data.drinks.map(d => d.strCategory);
+    const categories = response.data.drinks.map((d) => d.strCategory);
     res.render("categories", { categories });
   } catch (error) {
     console.error("Error fetching categories:", error.message);
     res.render("categories", { categories: [] });
+  }
+});
+
+/* =========================
+   Cocktails in Categories (GET)
+========================= */
+app.get("/category/:name", async (req, res) => {
+  const categoryName = req.params.name;
+  const page = parseInt(req.query.page) || 1;
+
+  try {
+    const response = await axios.get(
+      `${API_URL}/filter.php?c=${encodeURIComponent(categoryName)}`
+    );
+    const drinks = Array.isArray(response.data.drinks)
+      ? response.data.drinks
+      : [];
+
+    // Pagination
+    const PAGE_SIZE = 9;
+    const totalResults = drinks.length;
+    const totalPages = Math.ceil(totalResults / PAGE_SIZE);
+    const startIndex = (page - 1) * PAGE_SIZE;
+    const paginatedDrinks = drinks.slice(startIndex, startIndex + PAGE_SIZE);
+
+    res.render("category-drinks", {
+      drinks: paginatedDrinks,
+      categoryName,
+      page,
+      totalPages,
+    });
+  } catch (error) {
+    console.error("Error fetching category drinks:", error.message);
+    res.render("category-drinks", {
+      drinks: [],
+      categoryName,
+      page: 1,
+      totalPages: 1,
+    });
   }
 });
 
