@@ -29,7 +29,7 @@ A fun and interactive **Cocktail App** built with **Node.js, Express, and EJS**,
 
 1. **Clone this repository:**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/cocktail-app.git
+   git clone https://github.com/jwu7-bot/cocktail-app.git
    cd cocktail-app
    ```
 
